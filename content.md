@@ -180,3 +180,8 @@ The Date class lets you create, format, calculate, and compare dates. It's part 
 - Import date.rb manually from Ruby's source code.
   - Not correct—Ruby handles that when you require it.
 {: .choose_best #require_date title="Using Date Class" answer="2"}
+
+## References
+
+- Ruby Docs: [Date](https://docs.ruby-lang.org/en/master/Date.html)
+- [strftime format cheatsheet](https://devhints.io/strftime)
