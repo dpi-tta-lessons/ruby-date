@@ -27,11 +27,6 @@ puts "Today: #{today}"
 
 next_week = today + 7
 puts "Next week: #{next_week}"
-
-birthday = Date.new(2025, 9, 10)
-puts "Birthday: #{birthday.strftime("%B %d, %Y")}"
-
-puts "Is today my birthday? #{today == birthday}"
 ```
 {: .repl }
 
@@ -39,24 +34,20 @@ puts "Is today my birthday? #{today == birthday}"
 
 Before diving in, let's connect this to object-oriented programming (OOP). A class is like a blueprint. An object is a specific instance made from that blueprint. Ruby's `Date` class is a blueprint for creating date objects. These objects come with methods you can call to manipulate them.
 
-<aside class="tip">
-  In Ruby, almost everything is an object—including numbers, strings, and dates.
-</aside>
-
 ## Core vs Standard Library
 
-Ruby has core classes like `String`, `Array`, and `Integer`. The `Date` class is part of Ruby's standard library, not core. This means you need to explicitly require it:
+Ruby has core classes like `String`, `Array`, and `Integer`. The `Date` class is part of Ruby's [Standard Library](https://docs.ruby-lang.org/en/master/standard_library_md.html), not Core. This means you need to explicitly *require* it.
 
 ```ruby
 require 'date'
 ```
 {: .repl }
 
-If you forget, Ruby will throw an error saying it doesn't know what Date is.
+When you use `require` you're telling Ruby, "Please load the extra code from the date library so I can use the `Date` class and all its methods." If you forget, Ruby will throw an error saying it doesn't know what `Date` is.
 
 ## Creating Date Objects
 
-Get today's date:
+Get today's date by calling the class method `Date.today`.
 
 ```ruby
 require 'date'
@@ -65,7 +56,7 @@ puts today
 ```
 {: .repl }
 
-Create a specific date:
+Create a specific date by calling `Date.new` and passing in the integers for year, month, and day.
 
 ```ruby
 usa_birthday = Date.new(1776, 7, 4)
@@ -75,13 +66,9 @@ puts usa_birthday
 ```
 {: .repl }
 
-<aside class="warning">
-  The order is <code>year, month, day</code>. Mixing it up is a common mistake!
-</aside>
-
 ## Formatting Dates
 
-You can format a date into human-friendly strings using `.strftime`.
+You can format a date into human-friendly strings using the method [strftime](https://docs.ruby-lang.org/en/master/Date.html#method-i-strftime).
 
 ```ruby
 today = Date.today
@@ -91,7 +78,8 @@ puts today.strftime("%m/%d/%Y")
 {: .repl }
 
 <aside class="tip">
-<strong>Tip:</strong> <code>%B</code> is the full month name, <code>%d</code> is the day, and <code>%Y</code> is the four-digit year. </aside>
+  <code>%B</code> is the full month name, <code>%d</code> is the day, and <code>%Y</code> is the four-digit year.
+</aside>
 
 ## Date Arithmetic
 
@@ -114,10 +102,10 @@ Dates can be compared using standard comparison operators.
 
 ```ruby
 today = Date.today
-deadline = Date.new(2025, 12, 31)
+deadline = Date.new(2024, 12, 31)
 
 # true
-puts today < deadline
+puts today > deadline
 
 # false
 puts today == deadline
@@ -126,33 +114,42 @@ puts today == deadline
 
 ## A Quick Word About Time, DateTime, and Time Zones
 
-So far we've worked with just dates. But in the real world, you often need times of day and time zones too. Ruby provides other classes for this:
+So far, we've only worked with calendar dates. But in the real world, you often need to keep track of hours, minutes, seconds, and even time zones. Ruby has a few different classes to help with this:
 
 ### Time
 
-built-in, handles both date and clock time (e.g., 2025-09-10 14:35:00).
-
-### DateTime
-
-like Date but also includes times; comes from the same standard library as Date.
-
-### Time Zones
-
-Ruby's Time objects are usually set to your system's local time or UTC. Libraries like ActiveSupport (from Rails) make handling zones easier.
-
-Here's a quick peek:
+The [Time](https://docs.ruby-lang.org/en/master/Time.html) class is built into Ruby (no require needed). It handles both the date and the clock time. It also knows about your computer's time zone.
 
 ```ruby
 now = Time.now
-puts now   # 2025-09-10 14:35:12 -0400 (includes time + offset)
+puts now
+```
+{: .repl}
+
+Notice the number at the end, that's the time zone offset from UTC.
+
+### DateTime
+
+[DateTime](https://docs.ruby-lang.org/en/master/DateTime.html) is similar to [Date](https://docs.ruby-lang.org/en/master/Date.html), but it also includes hours, minutes, and seconds. Unlike [Time](https://docs.ruby-lang.org/en/master/Time.html), it comes from the standard library, so you must `require "date"` to use it.
+
+```ruby
+require "date"
 
 dt = DateTime.now
-puts dt    # 2025-09-10T14:35:12+00:00
+puts dt
 ```
 {: .repl }
 
 <aside class="tip">
-  You'll use <code>Time</code> or <code>DateTime</code> when you need to track hours, minutes, and seconds, not just calendar dates.
+  See the T between the date and time? That's an ISO 8601 format, which is commonly used in APIs and databases.
+</aside>
+
+### Time Zones
+
+Time zones are tricky. Ruby's Time objects are usually in either your computer's local time, or UTC (Coordinated Universal Time). For most everyday scripts, you can stick with `Time.now`.
+
+<aside class="tip">
+  Use <code>Time</code> or <code>DateTime</code> when you need to track <strong>hours, minutes, and seconds</strong> — not just calendar dates.
 </aside>
 
 ## Wrap-Up
