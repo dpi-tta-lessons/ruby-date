@@ -161,7 +161,7 @@ The Date class lets you create, format, calculate, and compare dates. It's part 
 - What must you do before using the Date class in Ruby?
 - Nothing, it's built into the core.
   - Not quite! It's not a core class.
-- Run require 'date' at the top of your file.
+- Write require 'date' at the top of your file.
   - Correct! You must load it from the standard library.
 - Import date.rb manually from Ruby's source code.
   - Not correct—Ruby handles that when you require it.
