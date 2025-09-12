@@ -35,15 +35,6 @@ puts "Is today my birthday? #{today == birthday}"
 ```
 {: .repl }
 
-Output:
-
-```
-Today: 2025-09-10
-Next week: 2025-09-17
-Birthday: September 10, 2025
-Is today my birthday? false
-```
-
 ## What Is the `Date` Class?
 
 Before diving in, let's connect this to object-oriented programming (OOP). A class is like a blueprint. An object is a specific instance made from that blueprint. Ruby's `Date` class is a blueprint for creating date objects. These objects come with methods you can call to manipulate them.
@@ -73,8 +64,6 @@ today = Date.today
 puts today
 ```
 {: .repl }
-
-Output: `2025-09-10`
 
 Create a specific date:
 
@@ -180,6 +169,14 @@ The Date class lets you create, format, calculate, and compare dates. It's part 
 - Import date.rb manually from Ruby's source code.
   - Not correct—Ruby handles that when you require it.
 {: .choose_best #require_date title="Using Date Class" answer="2"}
+
+## Project: Date
+
+In this project, you will write Ruby programs that leverage these date methods. This project includes automated tests, so click this link to get started <https://github.com/dpi-tta-projects/ruby-date/fork>, fork the repository and create a codespace.
+
+<aside class="warning">
+  In order to get credit for completing this project you'll need to open the assignment link from canvas to generate an access token.
+</aside>
 
 ## References
 
